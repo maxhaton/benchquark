@@ -1,6 +1,9 @@
 import std.stdio;
 import std.getopt, std.file;
+
+
 import driver;
+import bobthebuilder;
 void main(string[] args)
 {
 	bool useColour;
@@ -8,7 +11,7 @@ void main(string[] args)
 	GetoptResult opts;
 	string loc = getcwd;
 
-	
+
 	try {
 		opts = getopt(args, config.required, "driver",  &whichDriver, "d|dir", &loc,  "colour", &useColour);
 	} catch (Exception y)
@@ -18,10 +21,17 @@ void main(string[] args)
 	}
 	
 
-	writef!"Starting with %s in %s"(whichDriver, loc);
+	writef!"Starting with %s in %s\n"(whichDriver, loc);
 
+	const drive = getDriver(whichDriver);
+
+	foreach(t; execAndDiff(loc, drive)) {
+		writef!"%s: size -> %s"(t, t.size);
+	}
 	if(opts.helpWanted)
 	{
 		writeln("Imagine a manual here...");
 	}
+
+
 }
