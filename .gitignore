@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/benchquark
+benchquark.so
+benchquark.dylib
+benchquark.dll
+benchquark.a
+benchquark.lib
+benchquark-test-*
+*.exe
+*.o
+*.obj
+*.lst
