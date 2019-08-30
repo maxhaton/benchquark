@@ -1,0 +1,9 @@
+{
+	"authors": [
+		"maxhaton"
+	],
+	"copyright": "Copyright © 2019, maxhaton",
+	"description": "A minimal D application.",
+	"license": "proprietary",
+	"name": "testproj"
+}
