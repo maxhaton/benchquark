@@ -26,7 +26,7 @@ void main(string[] args)
 	const drive = getDriver(whichDriver);
 
 	foreach(t; execAndDiff(loc, drive)) {
-		writef!"%s: size -> %s"(t, t.size);
+		writef!"%s: \n\tsize -> %s\n"(t, t.size);
 	}
 	if(opts.helpWanted)
 	{
