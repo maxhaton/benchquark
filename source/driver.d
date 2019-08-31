@@ -20,18 +20,18 @@ DriverRoot getDriver(T...)(Drivers opt, T pack)
 }
 interface DriverRoot {
     ///Execute something in the shell
-    const string exec(string arg = "");
+    const string exec(string[] arg = []);
 }
 
 class DubDriver : DriverRoot {
-    const string exec(string argString = "")
+    const string exec(string[] argList = [])
     {
-        return executeShell("dub --force" ~ argString).output;
+        return execute(["dub"] ~ ["--force"] ~ argList).output;
     }
 }
 
 class MakeDriver : DriverRoot {
-    const string exec(string argString = "")
+    const string exec(string[] argString)
     {
         assert(0, "This is a stub");
     }
