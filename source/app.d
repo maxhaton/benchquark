@@ -4,6 +4,7 @@ import std.getopt, std.file;
 
 import driver;
 import bobthebuilder;
+import runners;
 void main(string[] args)
 {
 	bool useColour;
@@ -23,7 +24,7 @@ void main(string[] args)
 
 	writef!"Starting with %s in %s\n"(whichDriver, loc);
 
-	const drive = getDriver(whichDriver);
+	const drive = getDriver(whichDriver, new stopwatchTime);
 
 	foreach(t; execAndDiff(loc, drive)) {
 		writef!"%s: \n\tsize -> %s\n"(t, t.size);

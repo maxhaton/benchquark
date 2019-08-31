@@ -10,6 +10,6 @@ auto execAndDiff(string dir, const DriverRoot runner)
     
     import std.range, std.algorithm;
     const now = Clock.currTime();
-    runner.exec();
+    runner.exec().writeln;
     return dirEntries(dir, SpanMode.depth).filter!(x => !x.isDir && timeLastModified(x) > now);
 }
