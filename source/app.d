@@ -1,10 +1,13 @@
 import std.stdio;
-import std.getopt, std.file;
+import std.getopt, std.file, std.format;
 
 
 import driver;
 import bobthebuilder;
 import runners;
+import util.inform;
+
+
 void main(string[] args)
 {
 	bool useColour;
@@ -17,12 +20,12 @@ void main(string[] args)
 		opts = getopt(args, config.required, "driver",  &whichDriver, "d|dir", &loc,  "colour", &useColour);
 	} catch (Exception y)
 	{
-		writeln(y.msg);
-		return;
+		alert(y.msg);
+		
 	}
 	
 
-	writef!"Starting with %s in %s\n"(whichDriver, loc);
+	inform(format!"Starting with %s in %s\n"(whichDriver, loc));
 
 	const drive = getDriver(whichDriver, new stopwatchTime);
 
