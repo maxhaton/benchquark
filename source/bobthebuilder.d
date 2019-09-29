@@ -1,6 +1,6 @@
 module bobthebuilder;
 
-import driver;
+import driver.root;
 import std.stdio;
 import std.file;
 auto execAndDiff(string dir, const DriverRoot runner)

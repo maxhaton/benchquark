@@ -1,6 +1,9 @@
 //basic ansi color formatting
 module util.colour;
 import std.format : format;
+
+
+bool colouredOutput = true;
 ///Codes for ANSI Text Attributes
 enum TextAttribute : byte
 {
@@ -38,11 +41,13 @@ enum BackgroundColour : byte
 ///Who cares about efficiency, write string with attribute applied
 string attributeString(string term = "\033[0m")(string input, TextAttribute ta)
 {
+    if(!colouredOutput) return input;
     return format!"\033[%dm%s%s"(ta, input, term);
 }
 string colourString(string term = "\033[0m")(string input,
         ForegroundColour fg = ForegroundColour.White, BackgroundColour bg = BackgroundColour.Black)
 {
+    if(!colouredOutput) return input;
     return format!"\033[%d;%dm%s%s"(fg, bg, input, term);
 
 }

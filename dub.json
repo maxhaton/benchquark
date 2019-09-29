@@ -2,7 +2,21 @@
 	"authors": [
 		"maxhaton"
 	],
+	"buildTypes": {
+		"debug": {},
+		"release": {
+			"dflags-dmd": [
+				"-O",
+				"-release"
+			]
+		}
+	},
 	"copyright": "Copyright © 2019, maxhaton",
+	"dependencies": {
+		"arsd-official:terminal": "~>4.0.2",
+		"asdf": "~>0.5.2",
+		"dmd": "~master"
+	},
 	"description": "SAOC 2019 designs ",
 	"license": "proprietary",
 	"name": "benchquark"

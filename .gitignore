@@ -13,3 +13,9 @@ benchquark-test-*
 *.o
 *.obj
 *.lst
+test.d
+dmdtest.d
+testdir/
+.vscode/
+dcd.conf
+.gdb_history

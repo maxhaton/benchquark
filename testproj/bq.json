@@ -1,0 +1,10 @@
+{
+    "rawBuilds": [
+        {
+            "name": "justdub",
+            "exactCommand": "dub"
+        }
+
+    ]
+
+}

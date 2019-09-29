@@ -1,41 +1,24 @@
-import std.stdio;
-import std.getopt, std.file, std.format;
+import std;
 
+import arsd.terminal;
+import driver.impl, driver.root;
 
-import driver;
 import bobthebuilder;
-import runners;
-import util.inform;
+import runner.impl;
+import runner.root : checkRunners;
+import util.inform, util.colour, util.argparse;
 
 
-void main(string[] args)
+int main(string[] args)
 {
-	bool useColour;
-	Drivers whichDriver;
-	GetoptResult opts;
-	string loc = getcwd;
-
-
+	//Are all the required tools present
 	try {
-		opts = getopt(args, config.required, "driver",  &whichDriver, "d|dir", &loc,  "colour", &useColour);
-	} catch (Exception y)
-	{
-		alert(y.msg);
-		
+		//checkRunners!(runner.impl)(true);
+	} catch (Exception e) {
+		alert(e.msg);
 	}
 	
-
-	inform(format!"Starting with %s in %s\n"(whichDriver, loc));
-
-	const drive = getDriver(whichDriver, new stopwatchTime);
-
-	foreach(t; execAndDiff(loc, drive)) {
-		writef!"%s: \n\tsize -> %s\n"(t, t.size);
-	}
-	if(opts.helpWanted)
-	{
-		writeln("Imagine a manual here...");
-	}
-
+	
+	return args.argParse;
 
 }
