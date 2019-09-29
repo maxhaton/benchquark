@@ -18,10 +18,10 @@ class RawBuild : BuildSpecification {
 }
 
 struct ConfigResult {
-    const(BuildSpecification) getBuildByString(string name)
+    const(BuildSpecification) getBuildByString(string name) const
     {
         import std.algorithm : find;
-        const res = rawBuilds.find!(x => x.name = name);
+        const res = rawBuilds.find!(x => x.name == name);
         if(!res.length) throw new Exception("Could not find build of name: " ~ name);
         return res[0];
     }

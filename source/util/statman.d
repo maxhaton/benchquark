@@ -120,7 +120,7 @@ class HasCategory : HasJSON
     string prettyString(uint depth = 0)
     {
         //ugly
-
+        import std.stdio;
         alias tabrep = x => "\t".replicate(x);
 
         import util.colour;
@@ -128,33 +128,24 @@ class HasCategory : HasJSON
         import std.algorithm;
         import std.array : replicate;
 
-        string tmp = "";
-        if (depth == 0)
+        const tabs = "\t".replicate(depth);
+        string tmp;
+        
+            
+        
+        foreach (key, value; atomMap)
         {
-            //top level atoms
-            foreach (key, value; atomMap)
-            {
-                tmp ~= format!"%s %s\n"(colourString(key, ForegroundColour.Yellow),
-                        colourString(value.prettyString(0), ForegroundColour.Red));
-            }
-        }
 
+            tmp ~= format!"%s%s: %s\n"(tabs, colourString(key, ForegroundColour.Yellow),
+                        colourString(value.prettyString(0), ForegroundColour.Red));
+        }
+        
         
         foreach (key, value; categoryMap)
         {
-
-            alias tabrep = x => "\t".replicate(x);
-            tmp ~= format!"%s%s\n"(tabrep(depth), colourString(key, ForegroundColour.Blue));
-
-            if (value.atomMap.length)
-            {
-                foreach (key, value; atomMap)
-                {
-                    tmp ~= format!"%s%s %s\n"(tabrep(depth + 1), colourString(key, ForegroundColour.Yellow),
-                            colourString(value.prettyString(0), ForegroundColour.Red));
-                }
-            }
-            tmp ~= value.prettyString(depth + 1);
+            const colouredKey = key.colourString(ForegroundColour.Green);
+            tmp ~= format!"%s%s\n%s\n"(tabs, colouredKey, value.prettyString(depth + 1));
+            
         }
 
         return tmp;
