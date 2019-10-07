@@ -58,10 +58,33 @@ int argParse(string[] args)
 		alert("No config file found");
 	
 	const config = loadConfig("bq.json");
+	while(configName == "") {
+		import std.string : strip;		
+		writeln("Specify a configuration name");
+		configName = readln().strip;
+		
+			
+		
+	}
 
+
+	//Print some information about the loaded configurations
+	{
+		writef!"%d Configurations loaded\n"(config.rawBuilds.length);
+		config.rawBuilds.map!(x => x.name).each!writeln;
+
+	}
 	const build = config.getBuildByString(configName);
 
-	
+	if(accept("outwatch")) {
+		import commands.outwatch : command;
+		try {
+			command(build);
+		} catch(Exception e)
+		{
+			("outwatch exception thrown: " ~ e.msg).alert;
+		}
+	}
 	
 	alert("No valid command given!");
 	return 1;
