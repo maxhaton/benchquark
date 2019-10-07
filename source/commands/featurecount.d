@@ -106,14 +106,17 @@ string command(bool useJson, string[] args)
     string dimport;
     string fileName;
     string content;
+
+
     auto parseResult = getopt(args, config.required, "I|import", &dimport, "f|file", &fileName);
+
     if(fileName != "") {
         content = readText(fileName);
     } else {
         //stdin
     }
         
-    
+    defaultImportPaths(dimport).each!writeln;
     defaultImportPaths(dimport).each!addImport;
     //Just dump any issues to stderr
     scope diagnosticReporter = new StderrDiagnosticReporter(global.params.useDeprecated);

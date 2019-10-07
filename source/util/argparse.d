@@ -1,12 +1,13 @@
+//Argument parsing and other mess
 module util.argparse;
 import util.inform;
+import util.config;
 import util.config;
 import std.stdio;
 import std.getopt;
 import std.file;
-struct Program {
+import std.algorithm;
 
-}
 ///Ugly argument parsing, no attempt at abstraction
 int argParse(string[] args)
 {
@@ -30,12 +31,13 @@ int argParse(string[] args)
 		}
 	}
 	//Config to use
-	string configName; 
+	string configName = ""; 
 	bool useJson;
 
 	auto optResult = getopt(args, config.passThrough, "j|json", &useJson, "c|config", &configName);
 
-	
+	//This pattern can be made into a uda at some point but the interface isn't fixed yet
+
 	//Counter doesn't need a config file
 	if(accept("counter")) {	
 		import commands.featurecount : command;
