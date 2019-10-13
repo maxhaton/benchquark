@@ -2,7 +2,7 @@
     "rawBuilds": [
         {
             "name": "justdub",
-            "exactCommand": "dub"
+            "exactCommand": "dub --force"
         }
 
     ]

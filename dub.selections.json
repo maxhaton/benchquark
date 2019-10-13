@@ -4,6 +4,7 @@
 		"arsd-official": "4.0.3",
 		"asdf": "0.5.2",
 		"dmd": "~master",
+		"elf-d": "0.2.4",
 		"libdparse": "0.13.1",
 		"stdx-allocator": "2.77.5",
 		"terminal": "1.0.0"

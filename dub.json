@@ -15,7 +15,8 @@
 	"dependencies": {
 		"arsd-official:terminal": "~>4.0.2",
 		"asdf": "~>0.5.2",
-		"dmd": "~master"
+		"dmd": "~master",
+		"elf-d": "~>0.2.4"
 	},
 	"description": "SAOC 2019 designs ",
 	"license": "proprietary",

@@ -71,7 +71,7 @@ int argParse(string[] args)
 	//Print some information about the loaded configurations
 	{
 		writef!"%d Configurations loaded\n"(config.rawBuilds.length);
-		config.rawBuilds.map!(x => x.name).each!writeln;
+		config.rawBuilds.map!(x => x.name).each!(x => writef!"* %s\n"(x));
 
 	}
 	const build = config.getBuildByString(configName);
@@ -79,13 +79,18 @@ int argParse(string[] args)
 	if(accept("outwatch")) {
 		import commands.outwatch : command;
 		try {
-			command(build);
+			return command(build);
 		} catch(Exception e)
 		{
 			("outwatch exception thrown: " ~ e.msg).alert;
 		}
 	}
 	
+	if(accept("build"))
+	{
+		import commands.justbuild : command;
+		return command(build);
+	}
 	alert("No valid command given!");
 	return 1;
 }
