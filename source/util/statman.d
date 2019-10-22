@@ -22,6 +22,12 @@ public
         }
 
         alias buf this;
+        StatManager* gcDup()
+        {
+            auto y = new StatManager;
+            y.buf = this.buf;
+            return y;
+        }
     }
 }
 // Hidden implementation detailed
@@ -63,7 +69,53 @@ class Atom(T) : HasJSON
         return to!string(x);
     }
 }
-
+class Array : HasJSON {
+    string name;
+    this(string _name)
+    {
+        name = _name;
+    }
+    private HasCategory[] content;
+    HasCategory index(ulong i)
+    {
+        return content[i];
+    }
+    HasCategory bump()
+    {
+        auto y = new HasCategory;
+        content ~= y;
+        return y;
+    }
+    void debg() const
+    {
+        import std.stdio;
+        writeln("Stored: ", content.length);
+    }
+    JSONValue getJSON() const pure
+    {
+        
+        JSONValue g;
+        g.array = [];
+        foreach(i, v; content)
+        {
+            g.array ~= v.getJSON;
+        }
+        return g;
+    }
+    string prettyString(uint depth = 0)
+    {
+        import std.array : replicate;
+        import std.format;
+        alias tabrep = x => "\t".replicate(x);
+        const tabs = tabrep(depth);
+        string tmp = tabs;
+        foreach(i, j; content)
+        {
+            tmp ~= format!"Index: %d\n%s%s"(i, tabs, j.prettyString(depth + 1));
+        }
+        return tmp;
+    }
+}
 class HasCategory : HasJSON
 {
     HasJSON[string] atomMap;
@@ -72,7 +124,18 @@ class HasCategory : HasJSON
     {
         atomMap[name] = new Atom!T(x);
     }
-
+    Array initArray(string name)
+    {
+        if(name !in atomMap) {
+            auto y = new Array(name);
+            atomMap[name] = y;
+            return y;
+        } else {
+            return cast(Array) atomMap[name];
+        }
+        
+        
+    }
     HasCategory[string] categoryMap;
     HasCategory category(string name)
     {

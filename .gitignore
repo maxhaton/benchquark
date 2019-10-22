@@ -2,6 +2,7 @@
 docs.json
 __dummy.html
 docs/
+.benchquark
 /benchquark
 benchquark.so
 benchquark.dylib

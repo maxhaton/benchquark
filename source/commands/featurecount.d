@@ -95,7 +95,7 @@ class FeatureCountVisitor : SemanticTimePermissiveVisitor
     }
 }
 
-string command(bool useJson, string[] args)
+auto command(string[] args)
 {
     import std.getopt : getopt, config;
     import std.file : readText;
@@ -128,7 +128,6 @@ string command(bool useJson, string[] args)
     mod.module_.fullSemantic;
 
     mod.module_.accept(tmp);
-    if(useJson)
-        return tmp.stats.getJSON.toPrettyString;
-    return tmp.stats.prettyString;
+    
+    return tmp.stats.gcDup;
 }
