@@ -2,7 +2,13 @@
 module util.colour;
 import std.format : format;
 
-
+void toggleColour()
+{
+    if(colouredOutput)
+        colouredOutput = false;
+    else 
+        colouredOutput = true;
+}
 bool colouredOutput = true;
 ///Codes for ANSI Text Attributes
 enum TextAttribute : byte
