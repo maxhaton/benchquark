@@ -18,6 +18,7 @@
 		"dmd": "~master",
 		"elf-d": "~>0.2.4"
 	},
+	"lflags" : ["-lpapi"],
 	"description": "SAOC 2019 designs ",
 	"license": "proprietary",
 	"name": "benchquark"

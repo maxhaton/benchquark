@@ -116,7 +116,7 @@ class Array : HasJSON {
         return tmp;
     }
 }
-class HasCategory : HasJSON
+public class HasCategory : HasJSON
 {
     HasJSON[string] atomMap;
 

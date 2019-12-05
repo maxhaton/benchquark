@@ -1,7 +1,7 @@
 {
 	"fileVersion": 1,
 	"versions": {
-		"arsd-official": "4.0.3",
+		"arsd-official": "4.0.4",
 		"asdf": "0.5.2",
 		"dmd": "~master",
 		"elf-d": "0.2.4",

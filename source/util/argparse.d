@@ -116,17 +116,16 @@ int argParse(string[] args)
 	}
 	if (result)
 	{
+		string buf;
 		if (useJson)
 		{
-			result.getJSON.toPrettyString.writeln;
-			return 0;
+			buf = result.getJSON.toPrettyString;
+			
 		}
 		else
 		{
-			result.prettyString.writeln;
-			return 0;
+			buf = result.prettyString;		
 		}
-
 		if (spitItOut != "")
 		{
 			if (exists(spitItOut))
@@ -141,9 +140,12 @@ int argParse(string[] args)
 				toggleColour;
 				scope (exit)
 					toggleColour;
-				g.write(result.prettyString);
+				g.write(buf);
 			}
+		} else {
+			buf.writeln;
 		}
+		
 	}
 	alert("No valid command given!");
 	return 1;
